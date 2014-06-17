@@ -1,6 +1,6 @@
-# Ejabberd 13.12
+# Ejabberd 14.05 and otp 17.0
 
-FROM ubuntu:precise
+FROM ubuntu:12.04
 
 MAINTAINER Rafael Römhild <rafael@roemhild.de>
 
@@ -15,9 +15,9 @@ RUN adduser --system --ingroup ejabberd --home /opt/ejabberd --disabled-login ej
 # erlang
 RUN mkdir -p /src/erlang \
 && cd /src/erlang \
-&& curl http://erlang.org/download/otp_src_R16B03-1.tar.gz > otp_src_R16B03-1.tar.gz \
-&& tar xf otp_src_R16B03-1.tar.gz \
-&& cd otp_src_R16B03-1 \
+&& curl http://erlang.org/download/otp_src_17.0.tar.gz > otp_src_17.0.tar.gz \
+&& tar xf otp_src_17.0.tar.gz \
+&& cd otp_src_17.0 \
 && ./configure \
 && make \
 && make install
@@ -25,9 +25,9 @@ RUN mkdir -p /src/erlang \
 # ejabberd
 RUN mkdir -p /src/ejabberd \
 && cd /src/ejabberd \
-&& curl -L "http://www.process-one.net/downloads/downloads-action.php?file=/ejabberd/13.12/ejabberd-13.12.tgz" > ejabberd-13.12.tgz \
-&& tar xf ejabberd-13.12.tgz \
-&& cd ejabberd-13.12 \
+&& curl -L "http://www.process-one.net/downloads/downloads-action.php?file=/ejabberd/14.05/ejabberd-14.05.tgz" > ejabberd-14.05.tgz \
+&& tar xf ejabberd-14.05.tgz \
+&& cd ejabberd-14.05 \
 && ./configure --enable-user=ejabberd \
 && make \
 && make install
